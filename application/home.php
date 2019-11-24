@@ -61,39 +61,27 @@
             <div class="row">
                 <div class="create">
                     <div class="create__form">
-                        <form action="#" class="form">
+                        <form method="POST" action="#" class="form">
                                 <div class="u-center-text u-margin-bottom-medium">
                                     <h2 class="heading-secondary">
-                                        Start creating now
+                                        Sign up now
                                     </h2>
                                 </div> 
                             <div class="form__group">
-                                <input type="text" class="form__input" placeholder="Full Name" id="name" required>
-                                <label for="name" class="form__label">Full name</label>
+                                <input name="event_name" type="text" class="form__input" placeholder="Full Name" id="name" required>
+                                <label for="name" class="form__label">Event name</label>
                             </div>
                             <div class="form__group">
-                                <input type="email" class="form__input" placeholder="Email" id="email" required>
-                                <label for="email" class="form__label">Email</label>
+                                <input name="local" type="text" class="form__input" placeholder="Local" id="local" required>
+                                <label for="local" class="form__label">Local</label>
                             </div>
-                            <div class="form__group u-margin-bottom-medium">
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="large" name="size">
-                                        <label for="large" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Large tour group
-                                        </label>
-                                    </div>
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="small" name="size">
-                                        <label for="small" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Small tour group
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form__group">
-                                    <button class="btn btn--blue">Next step &rarr;</button>
-                                </div>
+                            <div class="form__group u-margin-bottom-tiny">
+                                <input name="date" type="text" class="form__input" placeholder="Date" id="date" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+                                <label for="date" class="form__label">DD/MM/YYYY</label>
+                            </div>
+                            <div class="form__group">
+                                <button class="btn btn--blue">Next step &rarr;</button>
+                            </div>
                         </form>
                     </div>
                 </div>
