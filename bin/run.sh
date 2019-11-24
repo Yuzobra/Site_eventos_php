@@ -1,0 +1,1 @@
+sudo apachectl start;php -t ./application -f index.php -S localhost:8080
