@@ -19,11 +19,14 @@
 				if ( isset($_GET["page"]) )
 				{
 					$page = $_GET["page"];
-					if ( strcmp($page, "consultas") == 0 )
-					include "buscar.Form.php";
-					else
-						include "home.php";
+					if ( strcmp($page, "home") == 0 )
+					include "home.php";
+					// else
+						// include "home.php";
 					/* Adicione aqui uma entrada para novas abas */
+				}
+				else {
+					include "home.php";
 				}
 			?>
 		</div>

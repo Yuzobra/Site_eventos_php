@@ -1,3 +1,32 @@
+<?php 
+    include_once "../persist/SqlManager.class.php";
+	$conn = new SqlManager("connect");
+    
+    $query = "SELECT * FROM pessoa";
+
+	$result = $conn->ExecuteRead($query);
+	
+	$return = "<table align='center' border=1  cellpadding='0' cellspacing='0'>";
+	$return .= "<tr><td><label>Nome Bar:</label></td>";
+	$return .= "<td><label>" . utf8_decode($bar) . "</label></td></tr>";
+	
+	foreach ( $result as $row )s
+	{
+		$valor = utf8_decode($row["pessoa"]);
+		$return .= "<tr>";
+		$return .= "<td colspan='2'>";
+		$return .= "<label>" . $valor . "</label>";
+		$return .= "</td>";
+		$return .= "</tr>";
+    }
+    
+    $return .= "</table>";
+
+    $conn->closeConnection();
+    echo($return)
+?>
+    
+
     <header class="header">
         <div class="header__logo-box">
             <img class="header__logo"src="img/logo-white.png" alt="Logo">
@@ -68,7 +97,7 @@
                                     </h2>
                                 </div> 
                             <div class="form__group">
-                                <input name="event_name" type="text" class="form__input" placeholder="Full Name" id="name" required>
+                                <input name="event_name" type="text" class="form__input" placeholder="Event Name" id="name" required>
                                 <label for="name" class="form__label">Event name</label>
                             </div>
                             <div class="form__group">
@@ -87,7 +116,6 @@
                 </div>
             </div>
         </section>
-
         <section class="section-tours">
                 <div class="u-center-text u-margin-bottom-big">
                         <h2 class="heading-secondary">
