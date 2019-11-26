@@ -13,7 +13,7 @@
 		public function __construct ($fileName)
 		{
 			if ( file_exists ( "../config/{$fileName}.ini" ) )
-				$dbInfo = parse_ini_file ( "../config/{$fileName}.ini" );
+				$dbInfo = parse_ini_file ( "../config/{$fileName}.ini");
 			else
 				throw new Exception ( "Arquivo {$fileName} não encontrado!" );
 			
@@ -24,7 +24,6 @@
 			$type = $dbInfo["type"];
 			$port = $dbInfo["port"];
 			$schema = $dbInfo["schema"];
-			
 			try
 			{
 				switch ( $type )

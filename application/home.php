@@ -1,29 +1,24 @@
 <?php 
-    include_once "../persist/SqlManager.class.php";
+  include_once "../persist/SqlManager.class.php";
 	$conn = new SqlManager("connect");
     
-    $query = "SELECT * FROM pessoa";
+  $query1 = "SELECT nome FROM participantes where cpf = '11111111111'";
+	$query2 = "SELECT nome FROM participantes where cpf = '22222222222'";
 
-	$result = $conn->ExecuteRead($query);
+
+	$result1 = $conn->ExecuteRead($query1);
+	$result2 = $conn->ExecuteRead($query2);
 	
-	$return = "<table align='center' border=1  cellpadding='0' cellspacing='0'>";
-	$return .= "<tr><td><label>Nome Bar:</label></td>";
-	$return .= "<td><label>" . utf8_decode($bar) . "</label></td></tr>";
-	
-	foreach ( $result as $row )s
+  $conn->closeConnection();
+  
+  foreach ( $result1 as $row )
 	{
-		$valor = utf8_decode($row["pessoa"]);
-		$return .= "<tr>";
-		$return .= "<td colspan='2'>";
-		$return .= "<label>" . $valor . "</label>";
-		$return .= "</td>";
-		$return .= "</tr>";
-    }
-    
-    $return .= "</table>";
-
-    $conn->closeConnection();
-    echo($return)
+		$id1 = utf8_decode($row["nome"]);
+	}
+	foreach ( $result2 as $row )
+	{
+		$id2 = utf8_decode($row["nome"]);
+	}
 ?>
     
 
@@ -57,7 +52,7 @@
                 <div class="story">
                     <figure class="story__shape">
                         <img src="img/story-1.jpg" alt="Person on a tour" class="story__img">
-                        <figcaption class="story__caption">Mary Smith</figcaption>
+                        <figcaption class="story__caption"><?php echo($id2) ?></figcaption>
                     </figure>
                     <div class="story__text">
                         <h3 class="heading-tertiary u-margin-bottom-small">
@@ -73,7 +68,7 @@
                 <div class="story">
                     <figure class="story__shape">
                         <img src="img/story-2.jpg" alt="Person on a tour" class="story__img">
-                        <figcaption class="story__caption">Jack Wilson</figcaption>
+                        <figcaption class="story__caption"><?php echo $id1?></figcaption>
                     </figure>
                     <div class="story__text">
                         <h3 class="heading-tertiary u-margin-bottom-small">
