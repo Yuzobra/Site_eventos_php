@@ -521,7 +521,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75%;
+  width: 40%;
+  padding-right: 2rem;
+  text-align: center;
   background-color: #fff;
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
   border-radius: 3px;
@@ -542,6 +544,7 @@ body {
 .popup ul {
   list-style: none;
   overflow: auto;
+  text-align: center;
 }
 .popup ul li {
   padding-left: 1rem;
@@ -575,7 +578,7 @@ body {
 .popup__close:link, .popup__close:visited {
   color: #777;
   position: absolute;
-  top: 2.5rem;
+  top: 1.5rem;
   right: 2.5rem;
   font-size: 3rem;
   text-decoration: none;

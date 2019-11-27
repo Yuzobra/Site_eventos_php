@@ -12,7 +12,9 @@
 
     &__content {
         @include absCenter;
-        width: 75%;
+        width: 40%;
+        padding-right: 2rem;
+        text-align: center;
         background-color: $color-white;
         box-shadow: 0 2rem 4rem rgba($color: $color-black, $alpha: .2);
         border-radius: 3px;
@@ -36,6 +38,7 @@
     ul {
         list-style: none;
         overflow: auto;
+        text-align: center;
         li {
             padding-left: 1rem;
         }
@@ -83,7 +86,7 @@
         &:visited {
             color: $color-grey-dark;
             position: absolute;
-            top: 2.5rem;
+            top: 1.5rem;
             right: 2.5rem;
             font-size: 3rem;
             text-decoration: none;
