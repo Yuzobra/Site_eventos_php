@@ -1,4 +1,7 @@
 <?php 
+  /* 
+
+  // Pre fetch all necessary data
   include_once "../persist/SqlManager.class.php";
 	$conn = new SqlManager("connect");
     
@@ -19,8 +22,137 @@
 	{
 		$id2 = utf8_decode($row["nome"]);
 	}
+
+
+
+    */
 ?>
     
+<?php
+    $id1 = "Sergio Lifschitz";
+    $id2 = "Mariana Salgueiro";
+    $all_events = [
+        1 => [
+            "nome" => "Congresso de Oncologia da Rede Dor",
+            "local" => "Rua Marques de São Vicente",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "4000",
+            "valor_entrada" => "20"
+        ],
+        2 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        3 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        4 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        5 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        6 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        7 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+        8 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+    ]; // GET ONLY WITH DATA LIM INSC > AGORA
+?>
+
+    <div class="popup" id="popup">
+        <div class="popup__content">
+        <h2 class="heading-secondary u-margin-bottom-tiny">Available Events</h2>
+            <a href="#section-tours" class="popup__close">&times;</a>
+            <?php
+                echo('<div class="popup__scrollable">');
+                foreach($all_events as $event) {
+                    echo('<div class="u-margin-bottom-small">');
+                    echo('<h3 class="heading-tertiary">'. $event["nome"]  .'</h3>');
+                    echo('<ul >');
+
+                    echo('<li>');
+                    echo('Local: ');
+                    echo($event["local"]);
+                    echo("<br/>");
+                    echo('</li>');
+
+                    echo('<li>');
+                    echo('Data de início: ');
+                    echo($event["data_inicio"]);
+                    echo("<br/>");
+                    echo('</li>');
+
+                    echo('<li>');
+                    echo('Data de termino: ');
+                    echo($event["data_termino"]);
+                    echo("<br/>");
+                    echo('</li>');
+
+                    echo('<li>');
+                    echo('Valor da entrada: ');
+                    echo($event["valor_entrada"]);
+                    echo("<br/>");
+                    echo('</li>');
+
+                    echo('</ul >');
+                    // print_r($event["local"]);
+                    echo('</div>');
+                }
+                echo('</div>');
+            ?>  
+            <!-- <a href="#popup" class="btn btn--blue">Book now</a> -->
+        </div>
+    </div>
+
+
 
     <header class="header">
         <div class="header__logo-box">
@@ -146,7 +278,7 @@
                                         <p class="card__price-only">Only</p>
                                         <p class="card__price-value">$297</p>
                                     </div>
-                                    <a href="#" class="btn btn--white">Book now!</a>
+                                    <a href="#popup" class="btn btn--white">Book now!</a>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +311,7 @@
                                                 <p class="card__price-only">Only</p>
                                                 <p class="card__price-value">$497</p>
                                             </div>
-                                            <a href="#" class="btn btn--white">Book now!</a>
+                                            <a href="#popup" class="btn btn--white">Book now!</a>
                                         </div>
                                     </div>
                         </div>
@@ -212,7 +344,7 @@
                                         <p class="card__price-only">Only</p>
                                         <p class="card__price-value">$897</p>
                                     </div>
-                                    <a href="#" class="btn btn--white">Book now!</a>
+                                    <a href="#popup" class="btn btn--white">Book now!</a>
                                 </div>
                             </div>
                         </div>
