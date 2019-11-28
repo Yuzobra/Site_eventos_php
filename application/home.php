@@ -40,6 +40,79 @@
     */
 ?>
 
+<!-- User events #TODO: Testar -->
+<?php
+    $user_events = [];
+
+    if(isset($_POST["user_events_submit"])){
+        include_once "../persist/SqlManager.class.php";
+        $conn = new SqlManager("connect");
+
+        $query =  "SELECT * ";
+        $query .= "FROM eventos e, inscreve i ";
+        $query .= "WHERE e.nome = i.nome_evento and ";
+        $query .= "e.local = i.local_evento and ";
+        $query .= "e.data_inicio = i.data_inicio_evento and ";
+        $query .= "i.cpf_participante = " . $user_cpf;
+
+        $result = $conn->ExecuteRead($query);
+
+        $conn->closeConnection();
+
+        foreach ( $result as $row )
+        {
+            array_push($user_events, [
+                "nome" => utf8_decode($row["nome"]),
+                "local" => utf8_decode($row["local"]),
+                "data_inicio" => utf8_decode($row["data_inicio"]),
+                "data_lim_inscricao" => utf8_decode($row["data_lim_inscricao"]),
+                "data_termino" => utf8_decode($row["data_termino"]),
+                "num_max_inscritos" => utf8_decode($row["num_max_inscritos"]),
+                "valor_entrada" => utf8_decode($row["valor_entrada"])
+            ]);
+        }
+    }
+?>
+
+<!-- Single insert into database #TODO: Testar -->
+<?php
+    if(isset($_POST["sign_up_submit"])){
+        include_once "../persist/SqlManager.class.php";
+            
+        $nome_evento = utf8_encode($_POST["nome_evento"]);
+        $local_evento = utf8_encode($_POST["local_evento"]);
+        $data_evento = utf8_encode($_POST["data_evento"]);
+        $cpf_participante = utf8_encode($_POST["cpf_paciente"]);
+
+        $conn = new SqlManager("connect");
+
+        $query = "INSERT INTO increve VALUES ('" . $nome_evento . "', '" . $local_evento . "', '" . $data_evento . "', '" . $cpf_participante . "')";
+
+        $numLinhas = $conn->executeCommand($query);
+
+        $conn->closeConnection();
+        if ( $numLinhas == 0 )
+        {    
+            echo('<div class="notification">');
+                echo('<div class="notification__content__fail">');
+                    echo('<p class="notification__text">');
+                       echo('Falha');
+                    echo('</p>');
+                echo('</div>');
+            echo('</div>');
+        }
+        else {
+            echo('<div class="notification">');
+                echo('<div class="notification__content__sucess">');
+                    echo('<p class="notification__text">');
+                        echo('Sucesso');
+                    echo('</p>');
+                echo('</div>');
+            echo('</div>');
+        }
+    }
+?>
+
 <!-- OFFLINE DATA FOR DEVELOPMENT ONLY -->
 <?php
 
@@ -119,41 +192,32 @@
             "valor_entrada" => "20"
         ],
     ]; // GET ONLY WITH DATA LIM INSC > AGORA
+    $user_events = [
+        1 => [
+            "nome" => "Congresso de Oncologia da Rede Dor",
+            "local" => "Rua Marques de São Vicente",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "4000",
+            "valor_entrada" => "20"
+        ],
+        2 => [
+            "nome" => "Simpósio de atenção ao paciente",
+            "local" => "Rua Dona Delfina",
+            "data_inicio" => "2019-12-15",
+            "data_lim_inscricao" => "2019-12-14",
+            "data_termino" => "2019-12-20",
+            "num_max_inscritos" => "50",
+            "valor_entrada" => "20"
+        ],
+    ];
 ?>
 
-<!-- User events -->
-<?php
-    $user_events = [];
 
-    if(isset($_POST["submit"])){
-        include_once "../persist/SqlManager.class.php";
-        $conn = new SqlManager("connect");
 
-        $query =  "SELECT * ";
-        $query .= "FROM eventos e, inscreve i ";
-        $query .= "WHERE e.nome = i.nome_evento and ";
-        $query .= "e.local = i.local_evento and ";
-        $query .= "e.data_inicio = i.data_inicio_evento and ";
-        $query .= "i.cpf_participante = " . $user_cpf;
 
-        $result = $conn->ExecuteRead($query);
 
-        $conn->closeConnection();
-
-        foreach ( $result as $row )
-        {
-            array_push($user_events, [
-                "nome" => utf8_decode($row["nome"]),
-                "local" => utf8_decode($row["local"]),
-                "data_inicio" => utf8_decode($row["data_inicio"]),
-                "data_lim_inscricao" => utf8_decode($row["data_lim_inscricao"]),
-                "data_termino" => utf8_decode($row["data_termino"]),
-                "num_max_inscritos" => utf8_decode($row["num_max_inscritos"]),
-                "valor_entrada" => utf8_decode($row["valor_entrada"])
-            ]);
-        }
-    }
-?>
 
 
 <div class="popup" id="popup-all">
@@ -330,7 +394,7 @@
                             <label for="date" class="form__label">DD/MM/YYYY</label>
                         </div>
                         <div class="form__group">
-                            <button class="btn btn--blue">Next step &rarr;</button>
+                            <button class="btn btn--blue" type="submit" method="POST" name="sign_up_submit">Sign Up &rarr;</button>
                         </div>
                     </form>
                 </div>

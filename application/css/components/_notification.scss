@@ -1,0 +1,51 @@
+.notification {
+    position: fixed;
+    z-index: 9999;
+    top: 5%;
+    left: -20rem;
+    
+    width: 20rem;
+    height: 5rem;
+
+    animation-name: notification;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.7, .01, .3, 1);
+    // animation-timing-function: ease-in-out;
+    /*
+    animation-iteration-count: 3;
+    animation-delay: 2s;
+    */
+
+
+    &__content {
+
+        &__sucess {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            line-height: 5rem;
+            border-radius: 2px;
+            background-color: $color-tertiary;
+        }
+
+        &__fail {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            line-height: 5rem;
+            border-radius: 2px;
+            background-color: $color-secondary-dark;
+        }
+
+    }
+
+
+    &__text {
+        padding-right: 3rem;
+
+        font-size: 1.6rem;
+        text-align: right;
+        vertical-align: center;
+        color: $color-white;
+    }
+}

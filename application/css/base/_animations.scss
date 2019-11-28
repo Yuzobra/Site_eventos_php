@@ -54,3 +54,33 @@
         tranform:rotate(180deg)
     }
 }
+
+@keyframes notification {
+    0% {
+        transform: translateX(0rem);
+    }
+
+    // 25% {
+    //     transform: translateX(40rem);
+
+    // }
+
+    30% {
+        transform: translateX(35rem);
+    }
+
+    70% {
+        transform: translateX(35rem);
+    }
+
+
+
+    // 75% {
+    //     transform: translateX(40rem);
+
+    // }
+
+    100%{
+        transform: translateX(0rem);
+    }
+}
